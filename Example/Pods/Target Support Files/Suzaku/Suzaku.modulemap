@@ -1,0 +1,6 @@
+framework module Suzaku {
+  umbrella header "Suzaku-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - Suzaku (0.0.1)
+
+DEPENDENCIES:
+  - Suzaku (from `../`)
+
+EXTERNAL SOURCES:
+  Suzaku:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Suzaku: a22439bd006f4d696c6ff82db63c8b06d7a20913
+
+PODFILE CHECKSUM: 0d19b5cda71aaf9f2b97b268d2540fab5fdaa9b2
+
+COCOAPODS: 1.10.0
