@@ -1,11 +1,16 @@
 # Suzaku
 
 [![CI Status](https://img.shields.io/travis/elijahdou/Suzaku.svg?style=flat)](https://travis-ci.org/elijahdou/Suzaku)
-[![Version](https://img.shields.io/badge/pod-0.0.1-blue.svg)](https://cocoapods.org/pods/Suzaku)
+[![Version](https://img.shields.io/badge/pod-0.0.2-blue.svg)](https://cocoapods.org/pods/Suzaku)
 [![Platform](https://img.shields.io/badge/platform-iOS-blue.svg)](https://cocoapods.org/pods/Suzaku)
 
 
 Suzaku is a swift version of the hashed wheel timer.
+
+## Feature
+- Thread safe
+- GCD Timer
+- Local variable timer
 
 ## Example
 

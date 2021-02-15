@@ -45,8 +45,7 @@ class ViewController: UIViewController {
             guard let self = self, let timer = timer else { return }
             self.counter += 1
             print("counter: \(self.counter) at \(self.dateFormatter.string(from: Date()))")
-            if self.counter == 66 {
-                timer.removeAll()
+            if self.counter == 18 {
                 timer.stop()
             }
         }
@@ -55,13 +54,23 @@ class ViewController: UIViewController {
         var localTimer: HashedWheelTimer? = try! HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 1, dispatchQueue: nil)
         localTimer?.resume()
         print("fire \(self.dateFormatter.string(from: Date()))")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            _ = try? localTimer?.addTimeout(timeInterval: .seconds(5), reapting: true) { [weak self] in
+        _ = try? localTimer?.addTimeout(timeInterval: .seconds(5), reapting: true) { [weak self] in
+            guard let self = self else { return }
+            print("fired \(self.dateFormatter.string(from: Date()))")
+        }
+        
+        DispatchQueue.concurrentPerform(iterations: 10000) { (_ ) in
+            let sec = Int.random(in: 1...10)
+            _ = try? localTimer?.addTimeout(timeInterval: .seconds(sec), reapting: false) { [weak self] in
                 guard let self = self else { return }
-                print("fired \(self.dateFormatter.string(from: Date()))")
-                localTimer?.stop()
-                localTimer = nil
+                print("random \(sec) \(self.dateFormatter.string(from: Date()))")
             }
+        }
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 38) {
+            localTimer?.stop()
+            localTimer = nil
+            print("remove all \(self.dateFormatter.string(from: Date()))")
         }
     }
 

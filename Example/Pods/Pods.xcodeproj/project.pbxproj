@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CCC86A4D38436506DCF176324ADAE38 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF0607A62DD4EC3E2791EEAA74018E6 /* LinkedList.swift */; };
+		073431654A6C05E490E11E756D644701 /* HashedWheelTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573EAA771E7DF961BDBA53BD6A5F3667 /* HashedWheelTimer.swift */; };
+		1238E05CD787C2267CDC06B1DFA6A493 /* Suzaku-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F64B32DC6358240FAFC1A01F00228E02 /* Suzaku-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		265A216D39535AEAAF57EA063336ACB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		391B0FFABF49506D6902A05405C48DB9 /* HashedWheelTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D5F843CF6F6C9BA613945DE0C95E13 /* HashedWheelTimer.swift */; };
-		3C45E6EA2F9FAF6AF153B1732B66A6F0 /* Suzaku-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B729750ADBEF246E6B86856B0DC46A4F /* Suzaku-dummy.m */; };
+		334568BF2B3BEE4ABC58C76B1FA94CF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		7C1C1537DDCA2D01F2EC5F0528DF2B54 /* Pods-Suzaku_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D1B68DD9AC15A4DE7D0677D18E396A /* Pods-Suzaku_Tests-dummy.m */; };
+		8FEC57DDAAF45457DCF3EADBD8CF019A /* Suzaku-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D2D1B3EDEACD1C9E0FD3D8562CBBD05 /* Suzaku-dummy.m */; };
 		972AC986CA01B5C97DBBBE0785940EFC /* Pods-Suzaku_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C74D36B2EDC344F021FB8F3295819338 /* Pods-Suzaku_Example-dummy.m */; };
 		9C27E90CC4D35FF31E639A138BEF52F1 /* Pods-Suzaku_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 13CDA02FD98D144F63AD91AAFC9C7548 /* Pods-Suzaku_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A01E8A2A5F4FFA4A5C543977A48A0B7B /* Pods-Suzaku_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 10460AE403C2524CCE9AB4DE1D238E18 /* Pods-Suzaku_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A04A68249D684E6E06A24230C28349B6 /* Suzaku-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 214433040602AD422490A9093600DE61 /* Suzaku-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA7EFEF9863CA03DF1CA0F68A921889D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		C75460C84ADA792399B3B4C1E7F5DEC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		C258FED960ED7D3BE1CB62B012D4BEBB /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E060D7EB0DB49588E92726C14E8FD9A /* LinkedList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		601EB7592ED7DBEB60C808442182A6A6 /* PBXContainerItemProxy */ = {
+		D2094607AD52D382240A3C0A0CCE4019 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 204A8CA67E79D4B8319F98222F2FC17A;
 			remoteInfo = "Pods-Suzaku_Example";
 		};
-		A98DF912A882D8DDBEE6FAE5BEDA3097 /* PBXContainerItemProxy */ = {
+		E518B61F97B7AED8CE281C7AC96C0C05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -38,48 +38,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0526722E6E8E1A9A12BCF5351793FF8F /* Suzaku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Suzaku.framework; path = Suzaku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		07D5F843CF6F6C9BA613945DE0C95E13 /* HashedWheelTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashedWheelTimer.swift; path = Suzaku/Classes/HashedWheelTimer.swift; sourceTree = "<group>"; };
+		0526722E6E8E1A9A12BCF5351793FF8F /* Suzaku.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Suzaku.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BDBD825924A1A9935597868C0C1C59 /* Pods-Suzaku_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Suzaku_Example.release.xcconfig"; sourceTree = "<group>"; };
 		10460AE403C2524CCE9AB4DE1D238E18 /* Pods-Suzaku_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Suzaku_Example-umbrella.h"; sourceTree = "<group>"; };
 		13CDA02FD98D144F63AD91AAFC9C7548 /* Pods-Suzaku_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Suzaku_Tests-umbrella.h"; sourceTree = "<group>"; };
 		1E874EFDDA5C73166EB13A6913D921B3 /* Pods-Suzaku_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Suzaku_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		214433040602AD422490A9093600DE61 /* Suzaku-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Suzaku-umbrella.h"; sourceTree = "<group>"; };
+		254F986551189C9F3FC156132E37C380 /* Suzaku-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Suzaku-prefix.pch"; sourceTree = "<group>"; };
 		29918863C46175A671A681F7EC8DD0A7 /* Pods-Suzaku_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Suzaku_Example-frameworks.sh"; sourceTree = "<group>"; };
 		2B40B414A9D3B82129C9B68F6D35B3C3 /* Pods-Suzaku_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Suzaku_Tests-Info.plist"; sourceTree = "<group>"; };
 		2C5D1F655680E2C2DFA618D01049198B /* Pods-Suzaku_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Suzaku_Example.modulemap"; sourceTree = "<group>"; };
-		39A75E3ECEAE0B181ABE4B58A33A9E3C /* Suzaku.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Suzaku.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		3C0F2DB13ABF3979401D5BA57CEC39CF /* Suzaku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Suzaku.debug.xcconfig; sourceTree = "<group>"; };
-		612612078DBE448A834CD21282BA2F7B /* Suzaku.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Suzaku.modulemap; sourceTree = "<group>"; };
+		32BB7FC1C227D39774563691E1712C9E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		33730CC67EEB49C6663F84D1E64601B1 /* Suzaku.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Suzaku.modulemap; sourceTree = "<group>"; };
+		573EAA771E7DF961BDBA53BD6A5F3667 /* HashedWheelTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HashedWheelTimer.swift; path = Suzaku/Classes/HashedWheelTimer.swift; sourceTree = "<group>"; };
+		59078863F251694D56FEE4174D5A85BF /* Suzaku-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Suzaku-Info.plist"; sourceTree = "<group>"; };
 		6205E2F98B8D28D90EBEB9BD5AA0C283 /* Pods-Suzaku_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Suzaku_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		68FFE691DD5C7445E9AB93EA1D6A59B1 /* Pods_Suzaku_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Suzaku_Example.framework; path = "Pods-Suzaku_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		70EFDD89E7CD5196D25C421A037DE992 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		68FFE691DD5C7445E9AB93EA1D6A59B1 /* Pods_Suzaku_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Suzaku_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7781C4B7C0F93A707373A71931EE1F30 /* Pods-Suzaku_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Suzaku_Example-Info.plist"; sourceTree = "<group>"; };
-		7FA55B8C62ACB59C57A4342F368B1535 /* Suzaku-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Suzaku-prefix.pch"; sourceTree = "<group>"; };
-		88EBA2A52811DAF91D6EFA630C21397F /* Pods_Suzaku_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Suzaku_Tests.framework; path = "Pods-Suzaku_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8925A6EC691A86F4389C6C0DCB544DDB /* Suzaku-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Suzaku-Info.plist"; sourceTree = "<group>"; };
-		8CF0607A62DD4EC3E2791EEAA74018E6 /* LinkedList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = Suzaku/Classes/LinkedList.swift; sourceTree = "<group>"; };
+		88EBA2A52811DAF91D6EFA630C21397F /* Pods_Suzaku_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Suzaku_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		916C564475FDDE67D62C7081CABD510B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		972E6CB27B15E4772638F908B387CA2D /* Suzaku.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Suzaku.debug.xcconfig; sourceTree = "<group>"; };
 		9892E68F24AB33B9A9F406A92FBBA18C /* Pods-Suzaku_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Suzaku_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D2D1B3EDEACD1C9E0FD3D8562CBBD05 /* Suzaku-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Suzaku-dummy.m"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E060D7EB0DB49588E92726C14E8FD9A /* LinkedList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LinkedList.swift; path = Suzaku/Classes/LinkedList.swift; sourceTree = "<group>"; };
 		A223AA1FEF6664C40473907A1BF37927 /* Pods-Suzaku_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Suzaku_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A2AD1EC17F6A5ABFC494A516C19A69D2 /* Pods-Suzaku_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Suzaku_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		A8231F6EBCA54865CBD98F702123462A /* Suzaku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Suzaku.release.xcconfig; sourceTree = "<group>"; };
 		A86B309A471A2AAB6A11EF33AA84F34E /* Pods-Suzaku_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Suzaku_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		AF1CF2C34A0AC26A45FD7BD9E5816051 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		AE5079B38B5263A9DEAED8B8BF257731 /* Suzaku.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Suzaku.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B2D1B68DD9AC15A4DE7D0677D18E396A /* Pods-Suzaku_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Suzaku_Tests-dummy.m"; sourceTree = "<group>"; };
-		B729750ADBEF246E6B86856B0DC46A4F /* Suzaku-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Suzaku-dummy.m"; sourceTree = "<group>"; };
 		C39B884E620B71030E4CA04410BE2E41 /* Pods-Suzaku_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Suzaku_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C66E0675E81D254B4CDE14F606400428 /* Pods-Suzaku_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Suzaku_Tests.modulemap"; sourceTree = "<group>"; };
 		C74D36B2EDC344F021FB8F3295819338 /* Pods-Suzaku_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Suzaku_Example-dummy.m"; sourceTree = "<group>"; };
-		EFD9F5A353245495B8B0ED896BA45F68 /* Suzaku.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Suzaku.release.xcconfig; sourceTree = "<group>"; };
+		F64B32DC6358240FAFC1A01F00228E02 /* Suzaku-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Suzaku-umbrella.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		24BA74E8817750ED9B10191A8E886AC6 /* Frameworks */ = {
+		4385AD7187D0B0C60948A7EB2F4E2BD0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C75460C84ADA792399B3B4C1E7F5DEC8 /* Foundation.framework in Frameworks */,
+				334568BF2B3BEE4ABC58C76B1FA94CF8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +111,18 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		38F839253BA7C054DC9326E4231B9AD2 /* Suzaku */ = {
+			isa = PBXGroup;
+			children = (
+				573EAA771E7DF961BDBA53BD6A5F3667 /* HashedWheelTimer.swift */,
+				9E060D7EB0DB49588E92726C14E8FD9A /* LinkedList.swift */,
+				C5B37E626546B06515E233775E59FA2C /* Pod */,
+				B2E8927485B43153AD6D3AA0A51DEEBA /* Support Files */,
+			);
+			name = Suzaku;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,34 +147,19 @@
 			path = "Target Support Files/Pods-Suzaku_Tests";
 			sourceTree = "<group>";
 		};
-		A33E8F5B5901C63E7563AE8374A36579 /* Pod */ = {
+		B2E8927485B43153AD6D3AA0A51DEEBA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				70EFDD89E7CD5196D25C421A037DE992 /* LICENSE */,
-				AF1CF2C34A0AC26A45FD7BD9E5816051 /* README.md */,
-				39A75E3ECEAE0B181ABE4B58A33A9E3C /* Suzaku.podspec */,
+				33730CC67EEB49C6663F84D1E64601B1 /* Suzaku.modulemap */,
+				9D2D1B3EDEACD1C9E0FD3D8562CBBD05 /* Suzaku-dummy.m */,
+				59078863F251694D56FEE4174D5A85BF /* Suzaku-Info.plist */,
+				254F986551189C9F3FC156132E37C380 /* Suzaku-prefix.pch */,
+				F64B32DC6358240FAFC1A01F00228E02 /* Suzaku-umbrella.h */,
+				972E6CB27B15E4772638F908B387CA2D /* Suzaku.debug.xcconfig */,
+				A8231F6EBCA54865CBD98F702123462A /* Suzaku.release.xcconfig */,
 			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		A9AD2B6660C2894B5AAD59B00F25645C /* Suzaku */ = {
-			isa = PBXGroup;
-			children = (
-				07D5F843CF6F6C9BA613945DE0C95E13 /* HashedWheelTimer.swift */,
-				8CF0607A62DD4EC3E2791EEAA74018E6 /* LinkedList.swift */,
-				A33E8F5B5901C63E7563AE8374A36579 /* Pod */,
-				D272A4D1F0B38E2AE46D7F2B65590F7A /* Support Files */,
-			);
-			name = Suzaku;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		AD3F35B15C8EBFDFEDDC43030F567DFF /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A9AD2B6660C2894B5AAD59B00F25645C /* Suzaku */,
-			);
-			name = "Development Pods";
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Suzaku";
 			sourceTree = "<group>";
 		};
 		BD1B0753B844FF31512C3EA972F953F8 /* Products */ = {
@@ -175,11 +172,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C5B37E626546B06515E233775E59FA2C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				916C564475FDDE67D62C7081CABD510B /* LICENSE */,
+				32BB7FC1C227D39774563691E1712C9E /* README.md */,
+				AE5079B38B5263A9DEAED8B8BF257731 /* Suzaku.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				AD3F35B15C8EBFDFEDDC43030F567DFF /* Development Pods */,
+				ED131AB23B19D367CE0636C4B9B3ADD7 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				BD1B0753B844FF31512C3EA972F953F8 /* Products */,
 				3366C1C799396E84A1A8BF6A172AEBE9 /* Targets Support Files */,
@@ -194,19 +201,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D272A4D1F0B38E2AE46D7F2B65590F7A /* Support Files */ = {
+		ED131AB23B19D367CE0636C4B9B3ADD7 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				612612078DBE448A834CD21282BA2F7B /* Suzaku.modulemap */,
-				B729750ADBEF246E6B86856B0DC46A4F /* Suzaku-dummy.m */,
-				8925A6EC691A86F4389C6C0DCB544DDB /* Suzaku-Info.plist */,
-				7FA55B8C62ACB59C57A4342F368B1535 /* Suzaku-prefix.pch */,
-				214433040602AD422490A9093600DE61 /* Suzaku-umbrella.h */,
-				3C0F2DB13ABF3979401D5BA57CEC39CF /* Suzaku.debug.xcconfig */,
-				EFD9F5A353245495B8B0ED896BA45F68 /* Suzaku.release.xcconfig */,
+				38F839253BA7C054DC9326E4231B9AD2 /* Suzaku */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Suzaku";
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		F213AB8C87081764DC6C8AE6A4F6A907 /* Pods-Suzaku_Example */ = {
@@ -229,14 +229,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		12C4520617C3A6566680265B1519CA49 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A04A68249D684E6E06A24230C28349B6 /* Suzaku-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		56E28B4E4208ECEDCC39957B62EAE785 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,17 +245,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8DCB568CFFE19053D0EB4C2192BF6CA6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1238E05CD787C2267CDC06B1DFA6A493 /* Suzaku-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		1AD4C4B99D270C5EFBC0B56C67C3F141 /* Suzaku */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 033CF70C177FFC175584C8B81268C39D /* Build configuration list for PBXNativeTarget "Suzaku" */;
+			buildConfigurationList = 8C15D9D07A999F722ED7711175B47579 /* Build configuration list for PBXNativeTarget "Suzaku" */;
 			buildPhases = (
-				12C4520617C3A6566680265B1519CA49 /* Headers */,
-				F2A708F1DA73BF82B159EA4B5F2CFF52 /* Sources */,
-				24BA74E8817750ED9B10191A8E886AC6 /* Frameworks */,
-				FADCAF98F38F01E5CC729BA5B3266636 /* Resources */,
+				8DCB568CFFE19053D0EB4C2192BF6CA6 /* Headers */,
+				AA209F6CAF60BEDE048724CDB5093EFB /* Sources */,
+				4385AD7187D0B0C60948A7EB2F4E2BD0 /* Frameworks */,
+				D1A6D0D7F58EE513E17DF562A664C8EF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -286,7 +286,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EA34DE986A2F1A0EED868236C021ABF9 /* PBXTargetDependency */,
+				7A9CEE7B37C33E33BD7FB47D55F7A03A /* PBXTargetDependency */,
 			);
 			name = "Pods-Suzaku_Example";
 			productName = "Pods-Suzaku_Example";
@@ -305,7 +305,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				388F415E858BF18FC37092A3D6377514 /* PBXTargetDependency */,
+				619D712F9D20C6027B3D10B0574A74AC /* PBXTargetDependency */,
 			);
 			name = "Pods-Suzaku_Tests";
 			productName = "Pods-Suzaku_Tests";
@@ -356,7 +356,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FADCAF98F38F01E5CC729BA5B3266636 /* Resources */ = {
+		D1A6D0D7F58EE513E17DF562A664C8EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -374,6 +374,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA209F6CAF60BEDE048724CDB5093EFB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				073431654A6C05E490E11E756D644701 /* HashedWheelTimer.swift in Sources */,
+				C258FED960ED7D3BE1CB62B012D4BEBB /* LinkedList.swift in Sources */,
+				8FEC57DDAAF45457DCF3EADBD8CF019A /* Suzaku-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CF5D656073BC0BFF7E9B0CB80BD29654 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,34 +392,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F2A708F1DA73BF82B159EA4B5F2CFF52 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				391B0FFABF49506D6902A05405C48DB9 /* HashedWheelTimer.swift in Sources */,
-				0CCC86A4D38436506DCF176324ADAE38 /* LinkedList.swift in Sources */,
-				3C45E6EA2F9FAF6AF153B1732B66A6F0 /* Suzaku-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		388F415E858BF18FC37092A3D6377514 /* PBXTargetDependency */ = {
+		619D712F9D20C6027B3D10B0574A74AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Suzaku_Example";
 			target = 204A8CA67E79D4B8319F98222F2FC17A /* Pods-Suzaku_Example */;
-			targetProxy = 601EB7592ED7DBEB60C808442182A6A6 /* PBXContainerItemProxy */;
+			targetProxy = D2094607AD52D382240A3C0A0CCE4019 /* PBXContainerItemProxy */;
 		};
-		EA34DE986A2F1A0EED868236C021ABF9 /* PBXTargetDependency */ = {
+		7A9CEE7B37C33E33BD7FB47D55F7A03A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Suzaku;
 			target = 1AD4C4B99D270C5EFBC0B56C67C3F141 /* Suzaku */;
-			targetProxy = A98DF912A882D8DDBEE6FAE5BEDA3097 /* PBXContainerItemProxy */;
+			targetProxy = E518B61F97B7AED8CE281C7AC96C0C05 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		20F4DF221CEDA09D5484803759624579 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8231F6EBCA54865CBD98F702123462A /* Suzaku.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Suzaku/Suzaku-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Suzaku/Suzaku-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Suzaku/Suzaku.modulemap";
+				PRODUCT_MODULE_NAME = Suzaku;
+				PRODUCT_NAME = Suzaku;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		73EDA78AABC863295010F9942BFCCA36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 08BDBD825924A1A9935597868C0C1C59 /* Pods-Suzaku_Example.release.xcconfig */;
@@ -477,6 +509,37 @@
 			};
 			name = Debug;
 		};
+		74729F76DB8285A85BC43D887338C7DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 972E6CB27B15E4772638F908B387CA2D /* Suzaku.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Suzaku/Suzaku-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Suzaku/Suzaku-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Suzaku/Suzaku.modulemap";
+				PRODUCT_MODULE_NAME = Suzaku;
+				PRODUCT_NAME = Suzaku;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -532,43 +595,11 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
-		};
-		8ED5140CA2850DCC8A83C0CF53AEADDC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3C0F2DB13ABF3979401D5BA57CEC39CF /* Suzaku.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Suzaku/Suzaku-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Suzaku/Suzaku-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Suzaku/Suzaku.modulemap";
-				PRODUCT_MODULE_NAME = Suzaku;
-				PRODUCT_NAME = Suzaku;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		98ECE60A0AC5366059BEBFCE9946480E /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -597,38 +628,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A5F9F0AF9C0B5EFFD169D0BB56B54728 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFD9F5A353245495B8B0ED896BA45F68 /* Suzaku.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Suzaku/Suzaku-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Suzaku/Suzaku-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Suzaku/Suzaku.modulemap";
-				PRODUCT_MODULE_NAME = Suzaku;
-				PRODUCT_NAME = Suzaku;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -738,20 +737,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		033CF70C177FFC175584C8B81268C39D /* Build configuration list for PBXNativeTarget "Suzaku" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8ED5140CA2850DCC8A83C0CF53AEADDC /* Debug */,
-				A5F9F0AF9C0B5EFFD169D0BB56B54728 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
 				7EE7A78859F657F6BEFC651185B43192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C15D9D07A999F722ED7711175B47579 /* Build configuration list for PBXNativeTarget "Suzaku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74729F76DB8285A85BC43D887338C7DE /* Debug */,
+				20F4DF221CEDA09D5484803759624579 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

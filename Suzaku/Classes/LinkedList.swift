@@ -202,7 +202,7 @@ public final class LinkedList<T> {
     /// - Parameter node: The node to be droped
     /// - Returns: The deleted node
     @discardableResult public func remove(node: Node<T>) -> Node<T> {
-        if node.previous == nil && node.next == nil && head != nil && head === tail {
+        if (node.previous == nil && node.next == nil) && (head != nil && head === tail) {
             head = nil
             head?.next = nil
             tail = nil

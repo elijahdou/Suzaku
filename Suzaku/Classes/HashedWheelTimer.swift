@@ -84,6 +84,10 @@ open class HashedWheelTimer {
     /// Tick counter
     private var tick: Int64 = 0
     private var buckets: [HashedWheelBucket] = []
+    
+    /// lock
+    private var lock: os_unfair_lock = os_unfair_lock()
+    
     /// self instance keeper
     private var keeper: Any?
     
@@ -132,24 +136,22 @@ open class HashedWheelTimer {
     /// remove the given `Timeout`
     /// - Parameter timeout: timeout
     public func remove(timeout: Timeout) {
+        os_unfair_lock_lock(&lock)
+        defer { os_unfair_lock_unlock(&lock) }
         timeout.remove()
     }
     
     public func removeAll() {
+        os_unfair_lock_lock(&lock)
+        defer { os_unfair_lock_unlock(&lock) }
         forEach { $0.remove() }
     }
     
-    /// Iterate all timeout in HashedWheelTimer
-    /// - Parameter body: A closure that takes an timeout of the HashedWheelTimer as a parameter.
-    /// - Throws: rethrow body throw
-    public func forEach(_ body: (Timeout) throws -> Void) rethrows {
-        for bucket in buckets {
-            guard !bucket.isEmpty else { continue }
-            try bucket.forEach { try body($0.value) }
-        }
+    // MARK: - timer operation
+    public var isCancelled: Bool {
+        return timer.isCancelled
     }
     
-    // MARK: - timer operation
     public func resume() {
         if state == .pause {
             state = .resume
@@ -164,22 +166,44 @@ open class HashedWheelTimer {
         }
     }
     
+    /// Stop timer and remove all `Timeouts`
     public func stop() {
         if 0 == __dispatch_source_testcancel(timer as! DispatchSource) {
             if state == .pause {
                resume()
             }
             timer.cancel()
-            removeAll()
+            workerQueue.async { self.removeAll() } // wait for timer stop, then remove all
         }
     }
     
     // MARK: -
+    /// Iterate all timeout in HashedWheelTimer
+    /// - Parameter body: A closure that takes an timeout of the HashedWheelTimer as a parameter.
+    /// - Throws: rethrow body throw
+    private func forEach(_ body: (Timeout) throws -> Void) rethrows {
+        for bucket in buckets {
+            guard !bucket.isEmpty else { continue }
+            try bucket.forEach { try body($0.value) }
+        }
+    }
+    
     private func handleEvent() {
+        os_unfair_lock_lock(&lock)
+        defer { os_unfair_lock_unlock(&lock) }
         tick &+= 1
         let idx = tick & (ticksPerWheel - 1)
         let bucket = buckets[Int(idx)]
-        try? bucket.excuteTimeouts(tick: tick)
+        guard let timeouts = try? bucket.excuteTimeouts(tick: tick),
+              !timeouts.isEmpty else {
+            return
+        }
+        timeouts.forEach {
+            let position = hash(timeInterval: $0.timeInterval)
+            $0.remainingRounds = position.0
+            $0.solt = position.1
+            buckets[Int($0.solt)].add(timeout: $0)
+        }
     }
     
     private func handleCancel() {
@@ -196,9 +220,7 @@ open class HashedWheelTimer {
         }
         let num = normalize(ticksPerWheel: ticksPerWheel)
         return (0..<num).map { _ in
-            let bucket = HashedWheelBucket()
-            bucket.timer = self
-            return bucket
+            return HashedWheelBucket()
         }
     }
     
@@ -245,6 +267,8 @@ open class HashedWheelTimer {
         }
         timeout.remainingRounds = position.0
         timeout.solt = position.1
+        os_unfair_lock_lock(&lock)
+        defer { os_unfair_lock_unlock(&lock) }
         buckets[Int(timeout.solt)].add(timeout: timeout)
     }
 }
@@ -252,7 +276,6 @@ open class HashedWheelTimer {
 
 private final class HashedWheelBucket {
     private let linkedList = LinkedList<Timeout>()
-    fileprivate weak var timer: HashedWheelTimer?
     
     public var isEmpty: Bool {
         return linkedList.isEmpty
@@ -278,8 +301,11 @@ private final class HashedWheelBucket {
         try linkedList.forEach(body)
     }
     
-    public func excuteTimeouts(tick: Int64) throws {
-        guard !linkedList.isEmpty else { return }
+    public func excuteTimeouts(tick: Int64) throws -> [Timeout] {
+        guard !linkedList.isEmpty else {
+            return []
+        }
+        var repeatingTimeouts = [Timeout]()
         try linkedList.forEach {
             var remove = false
             let timeout = $0.value
@@ -297,9 +323,11 @@ private final class HashedWheelBucket {
             }
             if remove && !linkedList.isEmpty { // !linkedList.isEmpty dobule check
                 linkedList.drop(node: $0)
-                guard let timer = timer, timeout.reapting else { return }
-                timer.add(timeout: timeout)
+                if timeout.reapting {
+                    repeatingTimeouts.append(timeout)
+                }
             }
         }
+        return repeatingTimeouts
     }
 }
