@@ -65,7 +65,7 @@ open class HashedWheelTimer {
     }
     
     private var state: TimerState = .pause
-    private let workerQueue: DispatchQueue
+    public let workerQueue: DispatchQueue
     private lazy var timer: DispatchSourceTimer = {
         let timer = DispatchSource.makeTimerSource(flags: [], queue: workerQueue)
         timer.schedule(deadline: .now(), repeating: .nanoseconds(Int(tickDuration)))
@@ -104,12 +104,6 @@ open class HashedWheelTimer {
         self.ticksPerWheel = ticksPerWheel
         keeper = self
         assert(buckets.count == ticksPerWheel)
-    }
-    
-    deinit {
-        if !buckets.isEmpty {
-            removeAll()
-        }
     }
     
     /// Add timeout task
@@ -166,12 +160,13 @@ open class HashedWheelTimer {
         }
     }
     
-    /// Stop timer and remove all `Timeouts`
+    /// Stop timer and remove all `Timeouts` async
     public func stop() {
         if 0 == __dispatch_source_testcancel(timer as! DispatchSource) {
             if state == .pause {
-               resume()
+                timer.resume()
             }
+            state = .pause
             timer.cancel()
             workerQueue.async { self.removeAll() } // wait for timer stop, then remove all
         }
@@ -248,6 +243,9 @@ open class HashedWheelTimer {
         @unknown default:
             throw TimerError.invalideTimeout(originTime: timeInterval)
         }
+        guard normalized >= tickDuration else {
+            throw TimerError.internalError(desc: "time interval must great or equal timer tick granularity")
+        }
         return Int64(normalized)
     }
     
@@ -260,6 +258,8 @@ open class HashedWheelTimer {
     }
     
     fileprivate func add(timeout: Timeout) {
+        os_unfair_lock_lock(&lock)
+        defer { os_unfair_lock_unlock(&lock) }
         let position = hash(timeInterval: timeout.timeInterval)
         guard (0..<ticksPerWheel).contains(position.1) else {
             assertionFailure()
@@ -267,8 +267,6 @@ open class HashedWheelTimer {
         }
         timeout.remainingRounds = position.0
         timeout.solt = position.1
-        os_unfair_lock_lock(&lock)
-        defer { os_unfair_lock_unlock(&lock) }
         buckets[Int(timeout.solt)].add(timeout: timeout)
     }
 }
