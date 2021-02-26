@@ -65,7 +65,9 @@ open class HashedWheelTimer {
     }
     
     private var state: TimerState = .pause
+    public let dispatchQueue: DispatchQueue
     public let workerQueue: DispatchQueue
+    private var queueKey: DispatchSpecificKey<String> = DispatchSpecificKey<String>()
     private lazy var timer: DispatchSourceTimer = {
         let timer = DispatchSource.makeTimerSource(flags: [], queue: workerQueue)
         timer.schedule(deadline: .now(), repeating: .nanoseconds(Int(tickDuration)))
@@ -85,9 +87,6 @@ open class HashedWheelTimer {
     private var tick: Int64 = 0
     private var buckets: [HashedWheelBucket] = []
     
-    /// lock
-    private var lock: os_unfair_lock = os_unfair_lock()
-    
     /// self instance keeper
     private var keeper: Any?
     
@@ -96,14 +95,21 @@ open class HashedWheelTimer {
     ///   - tickDuration: the duration between tick
     ///   - ticksPerWheel: solt num of wheel
     ///   - queue: callback queue
-    public required init(tickDuration: DispatchTimeInterval, ticksPerWheel: Int64, dispatchQueue: DispatchQueue?) throws {
-        workerQueue = dispatchQueue ?? DispatchQueue(label: "com.sazaku.timer")
+    public required init(tickDuration: DispatchTimeInterval, ticksPerWheel: Int64, dispatchQueue: DispatchQueue = .main) throws {
+        self.dispatchQueue = dispatchQueue
+        workerQueue = DispatchQueue(label: "com.sazaku.timer.", attributes: .initiallyInactive)
+        workerQueue.setSpecific(key: queueKey, value: workerQueue.label) // 队列检查
         let duration = try normalize(timeInterval: tickDuration)
         self.tickDuration = duration
         buckets = try makeWheel(ticksPerWheel: ticksPerWheel)
         self.ticksPerWheel = ticksPerWheel
         keeper = self
         assert(buckets.count == ticksPerWheel)
+    }
+    
+    deinit {
+        // Ensure that the timer does not crash when the timer is directly destructed by multiple threads in the suspended state
+        stop()
     }
     
     /// Add timeout task
@@ -113,16 +119,19 @@ open class HashedWheelTimer {
     ///   - block: task
     /// - Throws: invalide time interval, throws TimerError.invalideTimeout
     /// - Returns: timeout object, if timeInterval == 0, do it instancly and return Timeout.omit
-    @discardableResult public func addTimeout(timeInterval: DispatchTimeInterval, reapting: Bool = false, block: @escaping @convention(block) () -> Void) throws -> Timeout {
+    @discardableResult public func addTimeout(timeInterval: DispatchTimeInterval, reapting: Bool = false, block: @escaping (_ timer: HashedWheelTimer) -> Void) throws -> Timeout {
         let normalized = try normalize(timeInterval: timeInterval)
         if normalized == 0 { // normalized == 0, do it
-            block()
+            block(self)
             return Timeout.omit
         }
         guard normalized > 0 else {
             throw TimerError.invalideTimeout(originTime: timeInterval)
         }
-        let timeout = Timeout(timeInterval: normalized, reapting: reapting, workItem: DispatchWorkItem(block: block))
+        let timeout = Timeout(timeInterval: normalized, reapting: reapting, workItem: DispatchWorkItem(block: { [weak self] in
+            guard let self = self else { return }
+            self.dispatchQueue.async { block(self) }
+        }))
         add(timeout: timeout)
         return timeout
     }
@@ -130,15 +139,31 @@ open class HashedWheelTimer {
     /// remove the given `Timeout`
     /// - Parameter timeout: timeout
     public func remove(timeout: Timeout) {
-        os_unfair_lock_lock(&lock)
-        defer { os_unfair_lock_unlock(&lock) }
-        timeout.remove()
+        performAsync {
+            timeout.remove()
+        }
     }
     
     public func removeAll() {
-        os_unfair_lock_lock(&lock)
-        defer { os_unfair_lock_unlock(&lock) }
-        forEach { $0.remove() }
+        performAsync { [weak self] in
+            self?.forEach { $0.remove() }
+        }
+    }
+    
+    /// Perform `closure` sync safely
+    /// - Parameter closure: callback
+    public func performSync(_ closure: () -> Void) {
+        if onWorkerQueue() {
+            closure()
+            return
+        }
+        workerQueue.sync { closure() }
+    }
+    
+    /// Perform `closure` async safely
+    /// - Parameter closure: callback
+    public func performAsync(_ closure: @escaping () -> Void) {
+        workerQueue.async { closure() }
     }
     
     // MARK: - timer operation
@@ -149,6 +174,7 @@ open class HashedWheelTimer {
     public func resume() {
         if state == .pause {
             state = .resume
+            workerQueue.activate()
             timer.resume()
         }
     }
@@ -156,6 +182,7 @@ open class HashedWheelTimer {
     public func pause() {
         if state == .resume {
             state = .pause
+            workerQueue.suspend()
             timer.suspend()
         }
     }
@@ -166,9 +193,9 @@ open class HashedWheelTimer {
             if state == .pause {
                 timer.resume()
             }
-            state = .pause
             timer.cancel()
-            workerQueue.async { self.removeAll() } // wait for timer stop, then remove all
+            state = .pause
+            removeAll() // wait for timer stop, then remove all
         }
     }
     
@@ -184,8 +211,6 @@ open class HashedWheelTimer {
     }
     
     private func handleEvent() {
-        os_unfair_lock_lock(&lock)
-        defer { os_unfair_lock_unlock(&lock) }
         tick &+= 1
         let idx = tick & (ticksPerWheel - 1)
         let bucket = buckets[Int(idx)]
@@ -258,16 +283,21 @@ open class HashedWheelTimer {
     }
     
     fileprivate func add(timeout: Timeout) {
-        os_unfair_lock_lock(&lock)
-        defer { os_unfair_lock_unlock(&lock) }
-        let position = hash(timeInterval: timeout.timeInterval)
-        guard (0..<ticksPerWheel).contains(position.1) else {
-            assertionFailure()
-            return
+        performAsync { [weak self] in
+            guard let self = self else { return }
+            let position = self.hash(timeInterval: timeout.timeInterval)
+            guard (0..<self.ticksPerWheel).contains(position.1) else {
+                assertionFailure()
+                return
+            }
+            timeout.remainingRounds = position.0
+            timeout.solt = position.1
+            self.buckets[Int(timeout.solt)].add(timeout: timeout)
         }
-        timeout.remainingRounds = position.0
-        timeout.solt = position.1
-        buckets[Int(timeout.solt)].add(timeout: timeout)
+    }
+    
+    private func onWorkerQueue() -> Bool {
+        return workerQueue.getSpecific(key: queueKey) == workerQueue.label
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 import Suzaku
 
 class ViewController: UIViewController {
-    let timer = try! HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 8, dispatchQueue: nil)
+    let timer = try! HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 8, dispatchQueue: DispatchQueue.global())
     var counter = 0
     let dateFormatter = DateFormatter()
 
@@ -41,36 +41,36 @@ class ViewController: UIViewController {
         print("reverse: \(list)")
         print("list count: \(list.count)")
         timer.resume()
-        _ = try? timer.addTimeout(timeInterval: .seconds(3), reapting: true) { [weak self, weak timer] in
-            guard let self = self, let timer = timer else { return }
+        _ = try? timer.addTimeout(timeInterval: .seconds(3), reapting: true, block: { [weak self](timer) in
+            guard let self = self else { return }
             self.counter += 1
-            print("counter: \(self.counter) at \(self.dateFormatter.string(from: Date()))")
+            print("\(Thread.current) counter: \(self.counter) at \(self.dateFormatter.string(from: Date()))")
             if self.counter == 18 {
                 timer.stop()
             }
-        }
+        })
         
         
-        var localTimer: HashedWheelTimer? = try! HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 1, dispatchQueue: nil)
+        var localTimer = try? HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 1, dispatchQueue: DispatchQueue.global())
         localTimer?.resume()
         print("fire \(self.dateFormatter.string(from: Date()))")
-        _ = try? localTimer?.addTimeout(timeInterval: .seconds(5), reapting: true) { [weak self] in
+        _ = try? localTimer?.addTimeout(timeInterval: .seconds(5), reapting: true, block: { [weak self](timer) in
             guard let self = self else { return }
-            print("fired \(self.dateFormatter.string(from: Date()))")
-        }
+            print("\(Thread.current) fired \(self.dateFormatter.string(from: Date()))")
+        })
         
         DispatchQueue.concurrentPerform(iterations: 10000) { (_ ) in
             let sec = Int.random(in: 1...10)
-            _ = try? localTimer?.addTimeout(timeInterval: .seconds(sec), reapting: false) { [weak self] in
+            _ = try? localTimer?.addTimeout(timeInterval: .seconds(sec), reapting: false, block: { [weak self](timer) in
                 guard let self = self else { return }
-                print("random \(sec) \(self.dateFormatter.string(from: Date()))")
-            }
+                print("\(Thread.current) random \(sec) \(self.dateFormatter.string(from: Date()))")
+            })
         }
         
         DispatchQueue.global().asyncAfter(deadline: .now() + 38) {
             localTimer?.stop()
             localTimer = nil
-            print("remove all \(self.dateFormatter.string(from: Date()))")
+            print("\(Thread.current) remove all \(self.dateFormatter.string(from: Date()))")
         }
     }
 

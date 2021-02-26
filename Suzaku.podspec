@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Suzaku'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'Suzaku is a swift version of the hashed wheel timer.'
   s.description      = <<-DESC
 Suzaku is a swift version of a lightweight hashed wheel timer that can be used for efficient management of intensive timing tasks

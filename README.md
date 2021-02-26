@@ -1,7 +1,7 @@
 # Suzaku
 
 [![CI Status](https://img.shields.io/travis/elijahdou/Suzaku.svg?style=flat)](https://travis-ci.org/elijahdou/Suzaku)
-[![Version](https://img.shields.io/badge/pod-0.0.3-blue.svg)](https://cocoapods.org/pods/Suzaku)
+[![Version](https://img.shields.io/badge/pod-0.0.4-blue.svg)](https://cocoapods.org/pods/Suzaku)
 [![Platform](https://img.shields.io/badge/platform-iOS|macOS-blue.svg)](https://cocoapods.org/pods/Suzaku)
 
 
@@ -17,7 +17,7 @@ Suzaku is a swift version of the hashed wheel timer.
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Usage
-Hashed Wheel Timer were used as a base for Kernels and Network stacks, and were described by the freebsd, linux people, researchers and in many other searches. Suzaku is a swift implementation of hashed wheel timer designed for iOS clients, suitable for scenarios such as live rooms and persistent connections.
+Hashed Wheel Timer were used as a base for Kernels and Network stacks. It is suitable for scenarios where a large number of timed tasks are concurrent. Suzaku is a swift implementation of hashed wheel timer designed for iOS clients, suitable for scenarios such as live rooms and persistent connections.
 
 ```swift
 /// normal
@@ -28,11 +28,14 @@ class SomeClass {
     func someFunction() {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         timer.resume()
-        _ = try? timer.addTimeout(timeInterval: .seconds(3), reapting: true) { [weak self] in
+        _ = try? timer.addTimeout(timeInterval: .seconds(3), reapting: true, block: { [weak self](timer) in
             guard let self = self else { return }
             self.counter += 1
-            print("counter: \(self.counter), \(self.dateFormatter.string(from: Date()))")
-        }
+            print("\(Thread.current) counter: \(self.counter) at \(self.dateFormatter.string(from: Date()))")
+            if self.counter == 18 {
+                timer.stop()
+            }
+        })
     }
 }
 
@@ -42,16 +45,13 @@ class SomeClass {
     
     func someFunction() {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        var localTimer: HashedWheelTimer? = try! HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 1, dispatchQueue: nil)
+        var localTimer = try? HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 1, dispatchQueue: DispatchQueue.global())
         localTimer?.resume()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            _ = try? localTimer?.addTimeout(timeInterval: .seconds(5), reapting: true) { [weak self] in
-                guard let self = self else { return }
-                print("fired \(self.dateFormatter.string(from: Date()))")
-                localTimer?.stop()
-                localTimer = nil
-            }
-        }
+            _ = try? localTimer?.addTimeout(timeInterval: .seconds(5), reapting: true, block: { [weak self](timer) in
+            guard let self = self else { return }
+            print("\(Thread.current) fired \(self.dateFormatter.string(from: Date()))")
+        })
     }
 }
 ```
@@ -60,6 +60,7 @@ class SomeClass {
 - iOS 10.0+
 - Swift  5.0+
 - Xcode 11+
+- OSX 10.12+
 
 ## Installation
 
