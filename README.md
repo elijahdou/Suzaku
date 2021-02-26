@@ -17,7 +17,7 @@ Suzaku is a swift version of the hashed wheel timer.
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Usage
-Hashed Wheel Timer were used as a base for Kernels and Network stacks, and were described by the freebsd, linux people, researchers and in many other searches. Suzaku is a swift implementation of hashed wheel timer designed for iOS clients, suitable for scenarios such as live rooms and persistent connections.
+Hashed Wheel Timer were used as a base for Kernels and Network stacks. It is suitable for scenarios where a large number of timed tasks are concurrent. Suzaku is a swift implementation of hashed wheel timer designed for iOS clients, suitable for scenarios such as live rooms and persistent connections.
 
 ```swift
 /// normal
@@ -60,6 +60,7 @@ class SomeClass {
 - iOS 10.0+
 - Swift  5.0+
 - Xcode 11+
+- OSX 10.12+
 
 ## Installation
 
