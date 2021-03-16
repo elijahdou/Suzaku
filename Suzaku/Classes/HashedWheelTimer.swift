@@ -66,7 +66,7 @@ open class HashedWheelTimer {
     
     private var state: TimerState = .pause
     public let dispatchQueue: DispatchQueue
-    public let workerQueue: DispatchQueue
+    private let workerQueue: DispatchQueue
     private var queueKey: DispatchSpecificKey<String> = DispatchSpecificKey<String>()
     private lazy var timer: DispatchSourceTimer = {
         let timer = DispatchSource.makeTimerSource(flags: [], queue: workerQueue)
@@ -95,9 +95,11 @@ open class HashedWheelTimer {
     ///   - tickDuration: the duration between tick
     ///   - ticksPerWheel: solt num of wheel
     ///   - queue: callback queue
-    public required init(tickDuration: DispatchTimeInterval, ticksPerWheel: Int64, dispatchQueue: DispatchQueue = .main) throws {
+    ///   - targetQueue: target queue of internal queue
+    /// - Throws: TimerError
+    public required init(tickDuration: DispatchTimeInterval, ticksPerWheel: Int64, dispatchQueue: DispatchQueue = .main, targetQueue: DispatchQueue? = nil) throws {
         self.dispatchQueue = dispatchQueue
-        workerQueue = DispatchQueue(label: "com.sazaku.timer.", attributes: .initiallyInactive)
+        workerQueue = DispatchQueue(label: "com.sazaku.timer", target: targetQueue)
         workerQueue.setSpecific(key: queueKey, value: workerQueue.label) // 队列检查
         let duration = try normalize(timeInterval: tickDuration)
         self.tickDuration = duration
@@ -174,7 +176,6 @@ open class HashedWheelTimer {
     public func resume() {
         if state == .pause {
             state = .resume
-            workerQueue.activate()
             timer.resume()
         }
     }
@@ -182,7 +183,6 @@ open class HashedWheelTimer {
     public func pause() {
         if state == .resume {
             state = .pause
-            workerQueue.suspend()
             timer.suspend()
         }
     }

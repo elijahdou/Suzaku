@@ -50,7 +50,6 @@ class ViewController: UIViewController {
             }
         })
         
-        
         var localTimer = try? HashedWheelTimer(tickDuration: .seconds(1), ticksPerWheel: 1, dispatchQueue: DispatchQueue.global())
         localTimer?.resume()
         print("fire \(self.dateFormatter.string(from: Date()))")
