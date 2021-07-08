@@ -1,6 +1,6 @@
 {
   "name": "Suzaku",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "summary": "Suzaku is a swift version of the hashed wheel timer.",
   "description": "Suzaku is a swift version of a lightweight hashed wheel timer that can be used for efficient management of intensive timing tasks",
   "homepage": "https://github.com/elijahdou/Suzaku",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/elijahdou/Suzaku.git",
-    "tag": "0.0.4"
+    "tag": "0.0.6"
   },
   "platforms": {
     "osx": "10.12",

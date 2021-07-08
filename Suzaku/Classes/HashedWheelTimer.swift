@@ -68,17 +68,7 @@ open class HashedWheelTimer {
     public let dispatchQueue: DispatchQueue
     private let workerQueue: DispatchQueue
     private var queueKey: DispatchSpecificKey<String> = DispatchSpecificKey<String>()
-    private lazy var timer: DispatchSourceTimer = {
-        let timer = DispatchSource.makeTimerSource(flags: [], queue: workerQueue)
-        timer.schedule(deadline: .now(), repeating: .nanoseconds(Int(tickDuration)))
-        timer.setEventHandler { [weak self] in
-            self?.handleEvent()
-        }
-        timer.setCancelHandler { [weak self] in
-            self?.handleCancel()
-        }
-        return timer
-    }()
+    private var timer: DispatchSourceTimer
     
     private var tickDuration: Int64 = 0
     private var ticksPerWheel: Int64 = 0
@@ -97,14 +87,21 @@ open class HashedWheelTimer {
     ///   - queue: callback queue
     ///   - targetQueue: target queue of internal queue
     /// - Throws: TimerError
-    public required init(tickDuration: DispatchTimeInterval, ticksPerWheel: Int64, dispatchQueue: DispatchQueue = .main, targetQueue: DispatchQueue? = nil) throws {
+    public required init(tickDuration: DispatchTimeInterval, ticksPerWheel: Int64, dispatchQueue: DispatchQueue = .main, tartgetQueue: DispatchQueue? = nil) throws {
         self.dispatchQueue = dispatchQueue
-        workerQueue = DispatchQueue(label: "com.sazaku.timer", target: targetQueue)
+        workerQueue = DispatchQueue(label: "com.sazaku.timer", target: tartgetQueue)
         workerQueue.setSpecific(key: queueKey, value: workerQueue.label) // 队列检查
-        let duration = try normalize(timeInterval: tickDuration)
-        self.tickDuration = duration
+        timer = DispatchSource.makeTimerSource(flags: [], queue: workerQueue)
+        self.tickDuration = try normalize(timeInterval: tickDuration)
         buckets = try makeWheel(ticksPerWheel: ticksPerWheel)
         self.ticksPerWheel = ticksPerWheel
+        timer.schedule(deadline: .now(), repeating: .nanoseconds(Int(self.tickDuration)))
+        timer.setEventHandler { [weak self] in
+            self?.handleEvent()
+        }
+        timer.setCancelHandler { [weak self] in
+            self?.handleCancel()
+        }
         keeper = self
         assert(buckets.count == ticksPerWheel)
     }
@@ -215,9 +212,7 @@ open class HashedWheelTimer {
         let idx = tick & (ticksPerWheel - 1)
         let bucket = buckets[Int(idx)]
         guard let timeouts = try? bucket.excuteTimeouts(tick: tick),
-              !timeouts.isEmpty else {
-            return
-        }
+              !timeouts.isEmpty else { return }
         timeouts.forEach {
             let position = hash(timeInterval: $0.timeInterval)
             $0.remainingRounds = position.0
@@ -239,9 +234,7 @@ open class HashedWheelTimer {
             throw TimerError.invalideWheelNum(desc: "too big")
         }
         let num = normalize(ticksPerWheel: ticksPerWheel)
-        return (0..<num).map { _ in
-            return HashedWheelBucket()
-        }
+        return (0..<num).map { _ in HashedWheelBucket() }
     }
     
     private func normalize(ticksPerWheel: Int64) -> Int {
@@ -287,7 +280,7 @@ open class HashedWheelTimer {
             guard let self = self else { return }
             let position = self.hash(timeInterval: timeout.timeInterval)
             guard (0..<self.ticksPerWheel).contains(position.1) else {
-                assertionFailure()
+                assert(false, "out of bounds")
                 return
             }
             timeout.remainingRounds = position.0
@@ -315,9 +308,7 @@ private final class HashedWheelBucket {
     }
     
     public func remove(timeout: Timeout) {
-        guard let node = timeout.node else {
-            return
-        }
+        guard let node = timeout.node else { return }
         linkedList.remove(node: node)
     }
     
@@ -330,19 +321,17 @@ private final class HashedWheelBucket {
     }
     
     public func excuteTimeouts(tick: Int64) throws -> [Timeout] {
-        guard !linkedList.isEmpty else {
-            return []
-        }
+        guard !linkedList.isEmpty else { return [] }
+        
         var repeatingTimeouts = [Timeout]()
         try linkedList.forEach {
             var remove = false
             let timeout = $0.value
             if timeout.remainingRounds <= 0 {
-                if timeout.solt <= tick {
-                    timeout.workItem.perform()
-                } else {
+                guard timeout.solt <= tick else {
                     throw TimerError.internalError(desc: "shoud never happen")
                 }
+                timeout.workItem.perform()
                 remove = true
             } else if timeout.workItem.isCancelled {
                 remove = true

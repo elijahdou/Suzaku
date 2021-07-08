@@ -1,5 +1,5 @@
 PODS:
-  - Suzaku (0.0.4)
+  - Suzaku (0.0.6)
 
 DEPENDENCIES:
   - Suzaku (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Suzaku: a3c66c5db3fa91acf049aa7517f3b70845dc8871
+  Suzaku: 717501a74be8f82f79b9c3debac4de0684f15fb2
 
 PODFILE CHECKSUM: 0d19b5cda71aaf9f2b97b268d2540fab5fdaa9b2
 

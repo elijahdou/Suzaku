@@ -68,16 +68,15 @@ public final class LinkedList<T> {
         
         if index == 0 {
             return head!
-        } else {
-            var node = head!.next
-            for _ in 1..<index {
-                node = node?.next
-                if node == nil {
-                    break
-                }
-            }
-            return node!
         }
+        var node = head!.next
+        for _ in 1..<index {
+            node = node?.next
+            if node == nil {
+                break
+            }
+        }
+        return node!
     }
     
     /// Adds the value to the end of this list.
@@ -152,14 +151,14 @@ public final class LinkedList<T> {
             }
             head!.previous = newNode
             head = newNode
-        } else {
-            let prev = node(at: index - 1)
-            let next = prev.next
-            newNode.previous = prev
-            newNode.next = next
-            next?.previous = newNode
-            prev.next = newNode
+            return
         }
+        let prev = node(at: index - 1)
+        let next = prev.next
+        newNode.previous = prev
+        newNode.next = next
+        next?.previous = newNode
+        prev.next = newNode
     }
     
     /// Insert a copy of a LinkedList at a specific index. Crashes if index is out of bounds (0...self.count)
@@ -172,16 +171,16 @@ public final class LinkedList<T> {
         if index == 0 {
             list.tail?.next = head
             head = list.head
-        } else {
-            let prev = node(at: index - 1)
-            let next = prev.next
-            
-            prev.next = list.head
-            list.head?.previous = prev
-            
-            list.tail?.next = next
-            next?.previous = list.tail
+            return
         }
+        let prev = node(at: index - 1)
+        let next = prev.next
+        
+        prev.next = list.head
+        list.head?.previous = prev
+        
+        list.tail?.next = next
+        next?.previous = list.tail
     }
     
     /// Function to remove all nodes/value from the list
@@ -226,9 +225,7 @@ public final class LinkedList<T> {
     }
     
     @discardableResult public func popLast() -> T? {
-        guard !isEmpty else {
-            return nil
-        }
+        guard !isEmpty else { return nil }
         return removeLast()
     }
     

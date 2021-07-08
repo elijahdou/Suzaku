@@ -1,7 +1,7 @@
 # Suzaku
 
 [![CI Status](https://img.shields.io/travis/elijahdou/Suzaku.svg?style=flat)](https://travis-ci.org/elijahdou/Suzaku)
-[![Version](https://img.shields.io/badge/pod-0.0.5-blue.svg)](https://cocoapods.org/pods/Suzaku)
+[![Version](https://img.shields.io/badge/pod-0.0.6-blue.svg)](https://cocoapods.org/pods/Suzaku)
 [![Platform](https://img.shields.io/badge/platform-iOS|macOS-blue.svg)](https://cocoapods.org/pods/Suzaku)
 
 
